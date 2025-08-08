@@ -1,3 +1,4 @@
 ﻿# Git Senaryo Uygulaması
 
-Git'te bazı uygulamalar ve testler için oluşturulmuş bir örnek uygulamadır.
+Git'te bazı adımlar ve testler için oluşturulmuş bir örnek uygulamadır.
+
