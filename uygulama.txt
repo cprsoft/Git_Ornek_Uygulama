@@ -1,0 +1,57 @@
+#!/bin/bash
+# SENARYO COMMIT GRAFİĞİ OLUŞTURMA SCRIPTİ
+
+# 1. TEMİZ REPO OLUŞTUR
+rm -rf git-scenario
+mkdir git-scenario
+cd git-scenario
+git init
+
+# 2. A COMMIT'I (MAIN)
+echo "# Proje" > README.md
+git add README.md
+git commit -m "A: Proje ilk commit'i"
+
+# 3. B COMMIT'I (MAIN)
+echo "content" > file1.txt
+git add file1.txt
+git commit -m "B: main üzerinde geliştirme"
+
+# 4. C COMMIT'I (MAIN)
+echo '{"config":"value"}' > config.json
+git add config.json
+git commit -m "C: main üzerinde geliştirme"
+
+# 5. D COMMIT'I (MAIN)
+echo "more content" >> file1.txt
+git add file1.txt
+git commit -m "D: main üzerinde geliştirme"
+
+# 6. E COMMIT'I (HOTFIX - MAIN)
+git rm config.json
+git commit -m "E: yanlış dosya silinmiş (hotfix)"
+
+# 7. FEATURE BRANCH'İ OLUŞTUR (B'DEN)
+git checkout e21b4f6 -b feature  # B commit hash'ini git log ile bul
+
+# 8. F1 COMMIT'I (FEATURE)
+echo "f1" > feature.txt
+git add feature.txt
+git commit -m "F1: yeni özellik geliştirme"
+
+# 9. F2 COMMIT'I (FEATURE)
+echo "f2" >> feature.txt
+git add feature.txt
+git commit -m "F2: yeni özellik geliştirme"
+
+# 10. F3 COMMIT'I (FEATURE)
+echo "f3" >> feature.txt
+git add feature.txt
+git commit -m "F3: yeni özellik geliştirme"
+
+# 11. MAIN'E GERİ DÖN
+git checkout main
+
+# GRAFİK GÖRÜNTÜLEME
+echo -e "\n\033[1mOLUŞAN COMMIT GRAFİĞİ:\033[0m"
+git log --oneline --graph --all
